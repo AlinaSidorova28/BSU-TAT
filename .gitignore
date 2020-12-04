@@ -1,5 +1,7 @@
 .db  
 .log  
 
+.idea  
 target  
 bin  
+*.iml
