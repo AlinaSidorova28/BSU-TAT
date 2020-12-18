@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -58,19 +59,16 @@ public class WebDriverSeleniumTest {
         WebElement searchInput = waitForElementLocatedBy(driver, By.xpath(SEARCH_XPATH));
         searchInput.sendKeys(CORRECT_QUERY + "\n");
 
-        List<String> searchResults = driver
-                .findElements(By.className(RESULTS_CLASSNAME))
-                .stream()
-                .map(s -> s.getAttribute("title").toLowerCase())
-                .collect(Collectors.toList());
-
-        for (int i = 1; i < PAGES_AMOUNT; i++) {
-            waitForElementLocatedBy(driver, By.xpath(BUTTON_XPATH)).click();
+        List<String> searchResults = new ArrayList<>();
+        for (int i = 0; i < PAGES_AMOUNT; i++) {
             searchResults
                     .addAll(waitForElementsLocatedBy(driver, By.className(RESULTS_CLASSNAME))
                             .stream()
                             .map(s -> s.getAttribute("title").toLowerCase())
                             .collect(Collectors.toList()));
+            if (i != PAGES_AMOUNT - 1) {
+                waitForElementLocatedBy(driver, By.xpath(BUTTON_XPATH)).click();
+            }
         }
 
         System.out.println("Search results number: " + searchResults.size());

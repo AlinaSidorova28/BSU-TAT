@@ -24,11 +24,11 @@ public class PersonalPage {
     }
 
     public String changePassword(String password, String confirm) {
-        new ElementWaiting()
+        ElementWaiting
                 .waitForElementToBeClickableBy(driver, newPasswordBy)
                 .sendKeys(password);
 
-        new ElementWaiting()
+        ElementWaiting
                 .waitForElementToBeClickableBy(driver, passwordConfirmBy)
                 .sendKeys(confirm);
 

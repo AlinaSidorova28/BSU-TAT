@@ -4,6 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.MainPage;
 import page.PersonalPage;
+import page.SearchPage;
+
+import java.util.List;
 
 public class FrameWorkTest extends CustomConditions {
     @Test (description = "test successful change of password")
@@ -23,5 +26,18 @@ public class FrameWorkTest extends CustomConditions {
                 "Пароль должен быть не менее 6 символов длиной.\nНеверное подтверждение пароля.\n",
                 actual
         );
+    }
+
+    @Test (description = "test search results to match the correct query")
+    public void commonSearchTermResultsMatchCorrectQuery() {
+        new MainPage(driver).openTestedPage();
+
+        String correctQuery = "колготки";
+        List<String> searchResults =  new SearchPage(driver)
+                .openSearchForm()
+                .inputSearchData(correctQuery)
+                .gatherResults();
+
+        Assert.assertTrue(searchResults.stream().allMatch(s -> s.contains(correctQuery)));
     }
 }
