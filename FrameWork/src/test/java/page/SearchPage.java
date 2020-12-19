@@ -2,11 +2,10 @@ package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.reporters.jq.Main;
+import util.ElementInteraction;
 import util.ElementWaiting;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class SearchPage {
     public SearchPage openSearchForm() {
         new WebDriverWait(driver, 15)
                 .until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='promo']")));
-        new MainPage(driver).goToPage(formIdBy);
+        ElementInteraction.clickOnSource(driver, formIdBy);
         return this;
     }
 
@@ -43,7 +42,7 @@ public class SearchPage {
 
     public List<String> gatherResults() {
         List<String> searchResults = new ArrayList<>();
-        MainPage page = new MainPage(driver);
+        ElementInteraction interaction = new ElementInteraction();
         for (int i = 0; i < PAGES_AMOUNT; i++) {
             searchResults
                     .addAll(ElementWaiting.waitForElementsLocatedBy(driver, resultsBy)
@@ -51,7 +50,7 @@ public class SearchPage {
                             .map(s -> s.getAttribute("title").toLowerCase())
                             .collect(Collectors.toList()));
             if (i != PAGES_AMOUNT - 1) {
-                page.goToPage(buttonBy);
+                interaction.clickOnSource(driver, buttonBy);
             }
         }
 

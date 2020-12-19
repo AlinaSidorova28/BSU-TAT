@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import service.TestDataReader;
+import util.ElementInteraction;
 import util.ElementWaiting;
 
 public class RegistrationPage {
@@ -47,6 +48,6 @@ public class RegistrationPage {
                 .sendKeys(TESTDATA_USER_EMAIL);
         passwordInput.sendKeys(TESTDATA_USER_PASSWORD);
         loginButton.click();
-        new MainPage(driver).goToPage(By.xpath("//*[@id=\"bx_basketFKauiI\"]/a[@href='/personal/']"));
+        ElementInteraction.clickOnSource(driver, By.xpath("//*[@id=\"bx_basketFKauiI\"]/a[@href='/personal/']"));
     }
 }
