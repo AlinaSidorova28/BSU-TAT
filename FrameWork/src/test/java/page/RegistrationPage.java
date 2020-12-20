@@ -48,6 +48,6 @@ public class RegistrationPage {
                 .sendKeys(TESTDATA_USER_EMAIL);
         passwordInput.sendKeys(TESTDATA_USER_PASSWORD);
         loginButton.click();
-        ElementInteraction.clickOnSource(driver, By.xpath("//*[@id=\"bx_basketFKauiI\"]/a[@href='/personal/']"));
+        ElementInteraction.clickOnSource(driver, By.xpath("//*[@id='bx_basketFKauiI']/a[@href='/personal/']"));
     }
 }

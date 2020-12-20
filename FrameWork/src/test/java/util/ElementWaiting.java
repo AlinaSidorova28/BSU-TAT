@@ -20,7 +20,7 @@ public class ElementWaiting {
 
     public static List<WebElement> waitForElementsLocatedBy(WebDriver driver, By by) {
         return new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
+                .withTimeout(Duration.ofSeconds(15))
                 .pollingEvery(Duration.ofMillis(250))
                 .withMessage("Element was not found")
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));

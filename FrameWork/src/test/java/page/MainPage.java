@@ -1,12 +1,10 @@
 package page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import service.TestDataReader;
 import test.CustomConditions;
-import util.ElementWaiting;
 
 import java.util.concurrent.TimeUnit;
 

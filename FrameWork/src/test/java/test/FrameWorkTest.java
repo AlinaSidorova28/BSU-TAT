@@ -1,15 +1,9 @@
 package test;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import page.CatalogPage;
-import page.MainPage;
-import page.PersonalPage;
-import page.SearchPage;
+import page.*;
 import service.TestDataReader;
-import util.ElementWaiting;
 
 import java.util.List;
 
@@ -61,5 +55,17 @@ public class FrameWorkTest extends CustomConditions {
                         .chooseSort()
                         .checkSort()
         );
+    }
+
+    @Test (description = "test sort by price increasing in catalog")
+    public void addToCartTest() {
+        new MainPage(driver).openTestedPage(TestDataReader.getTestData("testdata.catalog"));
+        List<String> itemInfo = new PopupPage(driver)
+                .openPopup()
+                .gatherInformation();
+        List<List<String>> cartItems = new CartPage(driver)
+                .openCartPage()
+                .gatherInformation();
+        Assert.assertTrue(cartItems.stream().anyMatch(i -> i.equals(itemInfo)));
     }
 }

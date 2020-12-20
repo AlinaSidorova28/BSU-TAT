@@ -18,7 +18,7 @@ public class CatalogPage {
     private WebDriver driver;
     private List<Double> oldPriceListSorted;
 
-    private By additionalElementBy = By.xpath("//*[@id='arrFilter_217_3233089245-styler']");
+    private By additionalElementBy = By.id("arrFilter_217_3233089245-styler");
     private By sizeButtonBy = By.xpath("//*[@id='comp_44aaac3231a04d82737353aee8debb62']/form/ul/li[9]/div/div[1]/a[@href='javascript:void(0);']");
     private By sizeChoiceBy = By.xpath("//*[@id='comp_44aaac3231a04d82737353aee8debb62']/form/ul/li[9]/div/div[2]/ul/li[1]/label");
     private By sortButtonBy = By.xpath("//*[@id='comp_44aaac3231a04d82737353aee8debb62']//div[@class='jq-selectbox__trigger-arrow']");
