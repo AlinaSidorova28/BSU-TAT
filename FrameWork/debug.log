@@ -1,0 +1,4 @@
+[1220/161157.448:ERROR:filesystem_win.cc(148)] DeleteFile C:\Users\Asus\AppData\Local\Temp\scoped_dir21644_856069480\Crashpad\reports\76b2081e-05ab-4da5-8187-83bcef3eee05.dmp: Процесс не может получить доступ к файлу, так как этот файл занят другим процессом. (0x20)
+[1220/161207.530:ERROR:process_info.cc(359)] UncheckedAllocate
+[1220/164213.086:ERROR:process_info.cc(359)] UncheckedAllocate
+[1220/165532.036:ERROR:process_info.cc(359)] UncheckedAllocate

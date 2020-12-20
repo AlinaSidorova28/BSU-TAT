@@ -1,5 +1,7 @@
 package test;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.CatalogPage;
@@ -7,6 +9,7 @@ import page.MainPage;
 import page.PersonalPage;
 import page.SearchPage;
 import service.TestDataReader;
+import util.ElementWaiting;
 
 import java.util.List;
 
@@ -42,13 +45,21 @@ public class FrameWorkTest extends CustomConditions {
         Assert.assertTrue(searchResults.stream().allMatch(s -> s.contains(correctQuery)));
     }
 
-    @Test (description = "test size sort in catalog")
-    public void sortBySizeTest() {
+    @Test (description = "test size XXS filter in catalog")
+    public void filterBySizeTest() {
         new MainPage(driver).openTestedPage(TestDataReader.getTestData("testdata.catalog"));
+        Assert.assertTrue(new CatalogPage(driver)
+                .chooseFilter()
+                .checkSizes("XXS"));
+    }
+
+    @Test (description = "test sort by price increasing in catalog")
+    public void sortByPriceTest() {
+        new MainPage(driver).openTestedPage(TestDataReader.getTestData("testdata.catalog.small"));
         Assert.assertTrue(
                 new CatalogPage(driver)
-                        .chooseFilter()
-                        .collectItems("XXS")
+                        .chooseSort()
+                        .checkSort()
         );
     }
 }
