@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import util.ElementInteraction;
 import util.ElementWaiting;
 
 public class PersonalPage {
@@ -24,6 +25,7 @@ public class PersonalPage {
     }
 
     public String changePassword(String password, String confirm) {
+        ElementInteraction.clickOnSource(driver, By.xpath("//*[@id='bx_basketFKauiI']/a[@href='/personal/']"));
         ElementWaiting
                 .waitForElementToBeClickableBy(driver, newPasswordBy)
                 .sendKeys(password);

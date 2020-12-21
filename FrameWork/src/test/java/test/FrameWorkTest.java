@@ -57,9 +57,13 @@ public class FrameWorkTest extends CustomConditions {
         );
     }
 
-    @Test (description = "test sort by price increasing in catalog")
+
+    @Test (description = "test adding item to cart")
     public void addToCartTest() {
-        new MainPage(driver).openTestedPage(TestDataReader.getTestData("testdata.catalog"));
+        MainPage page = new MainPage(driver);
+        page.signInWithCredentials();
+//        page.openTestedPage(TestDataReader.getTestData("testdata.catalog"));
+        driver.get(TestDataReader.getTestData("testdata.catalog"));
         List<String> itemInfo = new PopupPage(driver)
                 .openPopup()
                 .gatherInformation();
@@ -67,5 +71,17 @@ public class FrameWorkTest extends CustomConditions {
                 .openCartPage()
                 .gatherInformation();
         Assert.assertTrue(cartItems.stream().anyMatch(i -> i.equals(itemInfo)));
+        Assert.assertTrue(cartItems.stream().anyMatch(i -> i.equals(itemInfo)));
+    }
+
+    @Test (description = "test removing item from cart", dependsOnMethods="addToCartTest")
+    public void removeFromCartTest() {
+        new MainPage(driver).signInWithCredentials();
+        Assert.assertTrue(
+                new CartPage(driver)
+                        .openCartPage()
+                        .deleteItem()
+                        .checkIfDeleted()
+        );
     }
 }
