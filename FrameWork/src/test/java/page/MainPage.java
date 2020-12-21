@@ -25,7 +25,7 @@ public class MainPage {
     }
 
     public void openTestedPage(String URL) {
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().deleteAllCookies();
         driver.get(URL);
         new WebDriverWait(driver, 15)

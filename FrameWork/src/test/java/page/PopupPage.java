@@ -17,7 +17,7 @@ public class PopupPage {
     private By popupLinkBy = By.xpath("//*[@id='ax-catalog']//li[1]/div/a[1]");
     private By additionalElementBy = By.id("arrFilter_217_3233089245-styler");
     private By infoModelColorBy = By.xpath("//*[@class='mf-product-info-column-2']//div[@class='view_popup-header']//span");
-    private By toCartButtonBy = By.xpath("//a[@class='button-link black-tr-b btn-pink']");
+    private By toCartButtonBy = By.xpath("//a[@class='button-link black-tr-b btn-pink'][@href='javascript:void(0);']");
 
     @FindBy(xpath="//*[@id='ax-catalog']//li[1]/div[1]")
     private WebElement item;
@@ -25,10 +25,7 @@ public class PopupPage {
     @FindBy(xpath="//*[@id='mf-pr-table-atts']/div[1]/ul/li[contains(@class, 'selected')]")
     private WebElement selectedSize;
 
-    @FindBy(xpath="//*[@class='mf-input-quantity']/div/input")
-    private WebElement selectedQuantity;
-
-    @FindBy(xpath="//a[@class='button-link black-tr-b btn-pink']")
+    @FindBy(xpath="//a[@class='button-link black-tr-b btn-pink'][@href='javascript:void(0);']")
     private WebElement toCartButton;
 
     public PopupPage(WebDriver driver) {
@@ -56,9 +53,8 @@ public class PopupPage {
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
         res.add(selectedSize.getText());
-        res.add(selectedQuantity.getAttribute("value"));
-
         toCartButton.click();
+        ElementWaiting.waitForElementToBeClickableBy(driver, By.xpath("//*[@id='bx_basketFKauiI']/a[@href='/personal/']"));
         return res;
     }
 }
